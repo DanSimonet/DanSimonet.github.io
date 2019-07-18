@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Analyses</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">RSeminar</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Welcome</a>
+</li>
+<li>
+  <a href="ROrientation.html">ROrientation</a>
+</li>
+<li>
+  <a href="Fundamentals.html">Fundamentals</a>
+</li>
+<li>
+  <a href="Analyses.html">Analyses</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Analyses</h1>
+
+</div>
+
+
+<p>The Tidyverse is a collection of R packages that adhere to the tidy data principles of data analysis and graphing. The purpose of these packages is to make working with data more efficient. The core Tidyverse packages were created by Hadley Wickham, but over the last few years other individuals have added some packages to the collective, which has significantly expanded our data analytical capabilities through improved ease of use and efficiency.</p>
+<p>Once data is placed into the appropriate format, you can draw upon hundreds of packages to carry out various analyses. We will cover a few related to Psychology, including <em>factor analysis</em> and <em>scale scoring</em> in the <code>psych</code> package, ANOVA in the <code>afex</code> package, and regression using the built-in <code>lm()</code> function.</p>
+<p>For everything to run in the next set of sections, make sure you have installed and loaded the <code>tidyverse</code>, <code>psych</code>, <code>tidyr</code>, and <code>afex</code>.</p>
+<div id="dplyr" class="section level1">
+<h1><code>Dplyr</code></h1>
+</div>
+<div id="psych-and-corrr" class="section level1">
+<h1><code>Psych</code> and <code>Corrr</code></h1>
+<p>First thing you may want to do is a exploratory factor analysis to identify whether your scales are hanging together. We will also incorporate some <code>dplyr</code> syntax to simplify the process. Let’s use the built-in <code>bfi</code> package containing Big Five personality data to demonstrate some useful functions.</p>
+<pre class="r"><code>library(psych)
+library(tidyverse)</code></pre>
+<pre><code>## -- Attaching packages ------------------------ tidyverse 1.2.1 --</code></pre>
+<pre><code>## v ggplot2 3.1.0       v purrr   0.3.2  
+## v tibble  2.1.1       v dplyr   0.8.0.1
+## v tidyr   0.8.3       v stringr 1.4.0  
+## v readr   1.3.1       v forcats 0.4.0</code></pre>
+<pre><code>## -- Conflicts --------------------------- tidyverse_conflicts() --
+## x ggplot2::%+%()   masks psych::%+%()
+## x ggplot2::alpha() masks psych::alpha()
+## x dplyr::filter()  masks stats::filter()
+## x dplyr::lag()     masks stats::lag()</code></pre>
+<pre class="r"><code>head(bfi)</code></pre>
+<pre><code>##       A1 A2 A3 A4 A5 C1 C2 C3 C4 C5 E1 E2 E3 E4 E5 N1 N2 N3 N4 N5 O1 O2 O3
+## 61617  2  4  3  4  4  2  3  3  4  4  3  3  3  4  4  3  4  2  2  3  3  6  3
+## 61618  2  4  5  2  5  5  4  4  3  4  1  1  6  4  3  3  3  3  5  5  4  2  4
+## 61620  5  4  5  4  4  4  5  4  2  5  2  4  4  4  5  4  5  4  2  3  4  2  5
+## 61621  4  4  6  5  5  4  4  3  5  5  5  3  4  4  4  2  5  2  4  1  3  3  4
+## 61622  2  3  3  4  5  4  4  5  3  2  2  2  5  4  5  2  3  4  4  3  3  3  4
+## 61623  6  6  5  6  5  6  6  6  1  3  2  1  6  5  6  3  5  2  2  3  4  3  5
+##       O4 O5 gender education age
+## 61617  4  3      1        NA  16
+## 61618  3  3      2        NA  18
+## 61620  5  2      2        NA  17
+## 61621  3  5      2        NA  17
+## 61622  3  3      1        NA  17
+## 61623  6  1      2         3  21</code></pre>
+<p>First, <code>psych</code> has some useful shortcuts for descriptive statistics. While I tend to prefer using <code>tidyverse</code> in combination with <code>mutate</code>, <code>group_by</code> and <code>summarize</code>, the <code>describe</code> and <code>describeBy</code> functions have similiar capabilities.</p>
+<pre class="r"><code>describe(bfi[,1:5])</code></pre>
+<pre><code>##    vars    n mean   sd median trimmed  mad min max range  skew kurtosis
+## A1    1 2784 2.41 1.41      2    2.23 1.48   1   6     5  0.83    -0.31
+## A2    2 2773 4.80 1.17      5    4.98 1.48   1   6     5 -1.12     1.05
+## A3    3 2774 4.60 1.30      5    4.79 1.48   1   6     5 -1.00     0.44
+## A4    4 2781 4.70 1.48      5    4.93 1.48   1   6     5 -1.03     0.04
+## A5    5 2784 4.56 1.26      5    4.71 1.48   1   6     5 -0.85     0.16
+##      se
+## A1 0.03
+## A2 0.02
+## A3 0.02
+## A4 0.03
+## A5 0.02</code></pre>
+<pre class="r"><code>describeBy(bfi[,1:5], group = bfi$gender)  # Compare agreeable item responses across genders</code></pre>
+<pre><code>## 
+##  Descriptive statistics by group 
+## group: 1
+##    vars   n mean   sd median trimmed  mad min max range  skew kurtosis
+## A1    1 918 2.73 1.43      2    2.62 1.48   1   6     5  0.56    -0.69
+## A2    2 908 4.50 1.26      5    4.65 1.48   1   6     5 -0.89     0.34
+## A3    3 912 4.34 1.33      5    4.47 1.48   1   6     5 -0.75    -0.11
+## A4    4 916 4.43 1.48      5    4.60 1.48   1   6     5 -0.76    -0.39
+## A5    5 915 4.38 1.32      5    4.51 1.48   1   6     5 -0.72    -0.20
+##      se
+## A1 0.05
+## A2 0.04
+## A3 0.04
+## A4 0.05
+## A5 0.04
+## -------------------------------------------------------- 
+## group: 2
+##    vars    n mean   sd median trimmed  mad min max range  skew kurtosis
+## A1    1 1866 2.26 1.37      2    2.05 1.48   1   6     5  0.99     0.04
+## A2    2 1865 4.95 1.09      5    5.12 1.48   1   6     5 -1.24     1.55
+## A3    3 1862 4.73 1.27      5    4.93 1.48   1   6     5 -1.15     0.90
+## A4    4 1865 4.83 1.46      5    5.09 1.48   1   6     5 -1.20     0.41
+## A5    5 1869 4.65 1.22      5    4.80 1.48   1   6     5 -0.90     0.36
+##      se
+## A1 0.03
+## A2 0.03
+## A3 0.03
+## A4 0.03
+## A5 0.03</code></pre>
+<p>A second common step is to run a correlation matrix on your data to get a sense of variable associations. <code>psych</code> offers a few useful functions, such as <code>lowerCor()</code> to return rounded values for the lower diagonal of a matrix and <code>pairs.panels()</code> to visualize scatterplots for whole data frames. However, I prefer the <code>corrr</code> package because it is tidy (hence works with tidyverse), offers better visualizations, and has more functionality for working with correlation matrices. Demonstrations of both are provided below for just the agreeableness items in <code>bfi</code>.</p>
+<pre class="r"><code># Psych functions
+lowerCor(bfi[,1:5])</code></pre>
+<pre><code>##    A1    A2    A3    A4    A5   
+## A1  1.00                        
+## A2 -0.34  1.00                  
+## A3 -0.27  0.49  1.00            
+## A4 -0.15  0.34  0.36  1.00      
+## A5 -0.18  0.39  0.50  0.31  1.00</code></pre>
+<pre class="r"><code>pairs.panels(bfi[,1:5])</code></pre>
+<p><img src="Analyses_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code># Demonstrate functions for corrr
+library(corrr)
+
+d &lt;- correlate(bfi[,1:5])           # Start with correlate which returns matrix as a tibble (amenable to dplyr)</code></pre>
+<pre><code>## 
+## Correlation method: &#39;pearson&#39;
+## Missing treated using: &#39;pairwise.complete.obs&#39;</code></pre>
+<pre class="r"><code>d                                   # Note differences fro psych display</code></pre>
+<pre><code>## # A tibble: 5 x 6
+##   rowname      A1      A2      A3      A4      A5
+##   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 A1       NA      -0.340  -0.265  -0.146  -0.181
+## 2 A2       -0.340  NA       0.485   0.335   0.390
+## 3 A3       -0.265   0.485  NA       0.360   0.504
+## 4 A4       -0.146   0.335   0.360  NA       0.308
+## 5 A5       -0.181   0.390   0.504   0.308  NA</code></pre>
+<pre class="r"><code>d %&gt;% shave() %&gt;% fashion()         # remove upper right triangle and print in pretty fashion</code></pre>
+<pre><code>##   rowname   A1   A2   A3   A4 A5
+## 1      A1                       
+## 2      A2 -.34                  
+## 3      A3 -.27  .49             
+## 4      A4 -.15  .34  .36        
+## 5      A5 -.18  .39  .50  .31</code></pre>
+<pre class="r"><code>d %&gt;% shave() %&gt;% stretch() %&gt;% 
+  na.omit() %&gt;% filter(r &gt; .50)   # remove upper triangle, stretch into long format while omitting missing, and then find strongest correlations</code></pre>
+<pre><code>## # A tibble: 1 x 3
+##   x     y         r
+##   &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;
+## 1 A3    A5    0.504</code></pre>
+<pre class="r"><code>d %&gt;% shave() %&gt;% rplot           # plot correlations according to size and direction</code></pre>
+<p><img src="Analyses_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<pre class="r"><code>network_plot(d)                   # network plot of correlations</code></pre>
+<p><img src="Analyses_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
+<p><code>Psych</code> places special emphasis on classical and modern approaches to psychometrics. Indeed, it was primarily built as a psychometrics package. See the documentation to learn about all its capabilities. One common goal in psychometrics as an attempt either to describe (components) or to explain (factors) the relationships between many observed variables in terms of a more limited set of components or latent factors.Two functions I particularly like are <code>fa.parallel</code> and <code>fa</code>. <code>fa.parallel</code> runs parallel factor techniques which compare observed eigen values of a correlation matrix with those of random data. <code>fa</code> uns exploratory factor analysis in the sense you need not specify which items load onto which factors; however, you <em>must</em> indicate the expected number of factors with the <code>nfactor</code> argument (default is 1). There are a variety of estimation methods, with the default being minimum residual factor analysis (can be changed with the <code>fm</code> function). Illustrations with the entire big five dataset are provided below.</p>
+<pre class="r"><code>fa.parallel(bfi[, 1:25])         # parallel analysis on entire big five item set</code></pre>
+<p><img src="Analyses_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre><code>## Parallel analysis suggests that the number of factors =  6  and the number of components =  6</code></pre>
+<pre class="r"><code>bfi_f &lt;- fa(bfi[,1:25], nfactors = 5, rotate = &quot;oblimin&quot;, fm = &quot;ml&quot;) # efa on bfi items, extracting 5 factors using maximum likelihood</code></pre>
+<pre><code>## Loading required namespace: GPArotation</code></pre>
+<pre class="r"><code>print(bfi_f, sort = TRUE)                                            # present factor loadings from highest to lowest</code></pre>
+<pre><code>## Factor Analysis using method =  ml
+## Call: fa(r = bfi[, 1:25], nfactors = 5, rotate = &quot;oblimin&quot;, fm = &quot;ml&quot;)
+## Standardized loadings (pattern matrix) based upon correlation matrix
+##    item   ML2   ML3   ML5   ML1   ML4   h2   u2 com
+## N1   16  0.85  0.01 -0.09 -0.09 -0.05 0.71 0.29 1.1
+## N2   17  0.82  0.02 -0.08 -0.04  0.01 0.66 0.34 1.0
+## N3   18  0.67 -0.06  0.10  0.14  0.03 0.53 0.47 1.2
+## N5   20  0.44 -0.02  0.22  0.25 -0.14 0.34 0.66 2.4
+## C4    9  0.12 -0.64  0.06  0.04 -0.03 0.47 0.53 1.1
+## C2    7  0.13  0.64  0.11  0.13  0.06 0.43 0.57 1.2
+## C5   10  0.14 -0.57  0.01  0.16  0.10 0.43 0.57 1.4
+## C3    8  0.04  0.56  0.11  0.08 -0.06 0.32 0.68 1.1
+## C1    6  0.06  0.53  0.00  0.05  0.16 0.32 0.68 1.2
+## A3    3 -0.03  0.03  0.67 -0.07  0.04 0.51 0.49 1.0
+## A2    2 -0.02  0.09  0.60  0.01  0.03 0.40 0.60 1.1
+## A5    5 -0.14  0.00  0.58 -0.17  0.06 0.48 0.52 1.3
+## A4    4 -0.06  0.20  0.46 -0.04 -0.15 0.29 0.71 1.7
+## A1    1  0.20  0.04 -0.36 -0.14 -0.04 0.15 0.85 2.0
+## E2   12  0.06 -0.03 -0.09  0.67 -0.07 0.55 0.45 1.1
+## E1   11 -0.09  0.10 -0.10  0.56 -0.11 0.37 0.63 1.3
+## E4   14  0.00  0.01  0.36 -0.53 -0.05 0.52 0.48 1.8
+## N4   19  0.41 -0.16  0.09  0.42  0.08 0.48 0.52 2.4
+## E5   15  0.18  0.27  0.08 -0.39  0.22 0.40 0.60 3.1
+## E3   13  0.06 -0.02  0.30 -0.34  0.31 0.44 0.56 3.0
+## O3   23  0.01  0.00  0.09 -0.10  0.63 0.47 0.53 1.1
+## O1   21 -0.01  0.06  0.02 -0.06  0.53 0.32 0.68 1.1
+## O5   25  0.11 -0.05  0.10 -0.07 -0.52 0.27 0.73 1.2
+## O2   22  0.16 -0.10  0.21 -0.03 -0.44 0.24 0.76 1.9
+## O4   24  0.08 -0.04  0.14  0.36  0.38 0.26 0.74 2.4
+## 
+##                        ML2  ML3  ML5  ML1  ML4
+## SS loadings           2.49 2.05 2.10 2.07 1.64
+## Proportion Var        0.10 0.08 0.08 0.08 0.07
+## Cumulative Var        0.10 0.18 0.27 0.35 0.41
+## Proportion Explained  0.24 0.20 0.20 0.20 0.16
+## Cumulative Proportion 0.24 0.44 0.64 0.84 1.00
+## 
+##  With factor correlations of 
+##       ML2   ML3   ML5   ML1   ML4
+## ML2  1.00 -0.21 -0.03  0.23 -0.01
+## ML3 -0.21  1.00  0.20 -0.22  0.20
+## ML5 -0.03  0.20  1.00 -0.31  0.23
+## ML1  0.23 -0.22 -0.31  1.00 -0.17
+## ML4 -0.01  0.20  0.23 -0.17  1.00
+## 
+## Mean item complexity =  1.6
+## Test of the hypothesis that 5 factors are sufficient.
+## 
+## The degrees of freedom for the null model are  300  and the objective function was  7.23 with Chi Square of  20163.79
+## The degrees of freedom for the model are 185  and the objective function was  0.63 
+## 
+## The root mean square of the residuals (RMSR) is  0.03 
+## The df corrected root mean square of the residuals is  0.04 
+## 
+## The harmonic number of observations is  2762 with the empirical chi square  1474.7  with prob &lt;  1.3e-199 
+## The total number of observations was  2800  with Likelihood Chi Square =  1749.88  with prob &lt;  1.4e-252 
+## 
+## Tucker Lewis Index of factoring reliability =  0.872
+## RMSEA index =  0.055  and the 90 % confidence intervals are  0.053 0.057
+## BIC =  281.47
+## Fit based upon off diagonal values = 0.98
+## Measures of factor score adequacy             
+##                                                    ML2  ML3  ML5  ML1  ML4
+## Correlation of (regression) scores with factors   0.93 0.88 0.88 0.88 0.85
+## Multiple R square of scores with factors          0.86 0.77 0.78 0.78 0.72
+## Minimum correlation of possible factor scores     0.73 0.54 0.56 0.56 0.44</code></pre>
+<p>Finally, you can use the <code>score</code> function of <code>psych</code> to score items, run item analyses, and return reliability estimates. To score items on particular scales, we must creat a set of <strong>scoring</strong> keys. These simply tell us which items go on which scales. Let’s quickly look at the scoring key for the first ten items of the Big Five scale by printing out <code>bfi.dictionary</code>.</p>
+<pre class="r"><code>head(bfi.dictionary, 10)</code></pre>
+<pre><code>##    ItemLabel                                      Item    Giant3
+## A1     q_146 Am indifferent to the feelings of others.  Cohesion
+## A2    q_1162         Inquire about others&#39; well-being.  Cohesion
+## A3    q_1206               Know how to comfort others.  Cohesion
+## A4    q_1364                            Love children.  Cohesion
+## A5    q_1419                 Make people feel at ease.  Cohesion
+## C1     q_124                   Am exacting in my work. Stability
+## C2     q_530     Continue until everything is perfect. Stability
+## C3     q_619            Do things according to a plan. Stability
+## C4     q_626           Do things in a half-way manner. Stability
+## C5    q_1949                            Waste my time. Stability
+##                 Big6        Little12 Keying IPIP100
+## A1     Agreeableness      Compassion     -1    B5:A
+## A2     Agreeableness      Compassion      1    B5:A
+## A3     Agreeableness      Compassion      1    B5:A
+## A4     Agreeableness      Compassion      1    B5:A
+## A5     Agreeableness      Compassion      1    B5:A
+## C1 Conscientiousness     Orderliness      1    B5:C
+## C2 Conscientiousness     Orderliness      1    B5:C
+## C3 Conscientiousness     Orderliness      1    B5:C
+## C4 Conscientiousness Industriousness     -1    B5:C
+## C5 Conscientiousness Industriousness     -1    B5:C</code></pre>
+<p>We can see agreeableness has 1 negatively keyed item whereas conscientiousness has 2 negatively keyed items. The most intuitive way to create a scoring key is to create a <strong>list</strong> where each element is a scale containing a vector of keys. This vector can either be the actual names or an integer of their location. YOU also want to insert a <code>-</code> symbol in front of any character or integer to reverse an item. Here is an example for the first ten items of the BFI.</p>
+<pre class="r"><code>keys.list &lt;- list(Agreeable = c(-1, 2:5), Consc = c(6:8, -9, -10))  #creating scoring key based upon item location, noting where to reverse items based on the bfi.dictionary keying
+keys.list2 &lt;- list(Agreeable = c(&quot;-A1&quot;, &quot;A2&quot;, &quot;A3&quot;, &quot;A4&quot;, &quot;A5&quot;), Consc = c(&quot;C1&quot;, &quot;C2&quot;, &quot;C3&quot;, &quot;-C4&quot;, &quot;-C4&quot;))  #creating scoring key based upon item location, noting where to reverse items based on the bfi.dictionary keying
+
+scores &lt;-  scoreItems(keys.list, bfi)    # providing scoring key followed by data frame
+scores    # print to investigate descriptive statistics, alpha, scale intercorrelations, and also get scale scores</code></pre>
+<pre><code>## Call: scoreItems(keys = keys.list, items = bfi)
+## 
+## (Unstandardized) Alpha:
+##       Agreeable Consc
+## alpha       0.7  0.72
+## 
+## Standard errors of unstandardized Alpha:
+##       Agreeable Consc
+## ASE       0.014 0.014
+## 
+## Average item correlation:
+##           Agreeable Consc
+## average.r      0.32  0.34
+## 
+## Median item correlation:
+## Agreeable     Consc 
+##      0.34      0.34 
+## 
+##  Guttman 6* reliability: 
+##          Agreeable Consc
+## Lambda.6      0.68   0.7
+## 
+## Signal/Noise based upon av.r : 
+##              Agreeable Consc
+## Signal/Noise       2.3   2.6
+## 
+## Scale intercorrelations corrected for attenuation 
+##  raw correlations below the diagonal, alpha on the diagonal 
+##  corrected correlations above the diagonal:
+##           Agreeable Consc
+## Agreeable      0.70  0.36
+## Consc          0.26  0.72
+## 
+##  In order to see the item by scale loadings and frequency counts of the data
+##  print with the short option = FALSE</code></pre>
+<p>We can see the internal consistency for agreeableness (.70) and conscientiousness (.72) are adequate, the average item correlations are on the lower but typical end for personality scales (.32 to .34), and the two scales have only a modest correlation of .26 suggesting adequate divergent validity. <code>scores</code> also contains the actual scores which you can easily extract and add into your data frame.</p>
+<pre class="r"><code>head(scores$scores)</code></pre>
+<pre><code>##       Agreeable Consc
+## 61617       4.0   2.8
+## 61618       4.2   4.0
+## 61620       3.8   4.0
+## 61621       4.6   3.0
+## 61622       4.0   4.4
+## 61623       4.6   5.6</code></pre>
+<pre class="r"><code>bfi_ac &lt;- cbind(bfi, scores$scores)</code></pre>
+<div id="exercise-with-psych" class="section level2">
+<h2>Exercise with Psych</h2>
+<ol style="list-style-type: decimal">
+<li>Run a parallel and exploratory factor analysis on the 20 PANAS items from T1 in the NAPS data. Note you will need to eliminate missing data.</li>
+</ol>
+<pre class="r"><code>a &lt;- NAPS %&gt;% dplyr::select(T1_PANAS1:T1_PANAS20) %&gt;% na.omit  # Eliminate NA and select only PANAS items
+fa(a)</code></pre>
+<p>There appears to be a problem with T1_PANAS8. Let’s explore closer.</p>
+<pre class="r"><code>glimpse(a)
+cor(a)</code></pre>
+<p>Identified PANAS_8 as having zero variance, thus throwing an error. Eliminate from analysis.</p>
+<pre class="r"><code>library(psych)
+
+a &lt;- NAPS %&gt;% dplyr::select(T1_PANAS1:T1_PANAS20) %&gt;% na.omit 
+ab &lt;- a %&gt;% dplyr::select(-T1_PANAS8)</code></pre>
+<p>Run a parallel analysis to determine number of factors to extract.</p>
+<pre class="r"><code>fa.parallel(ab)</code></pre>
+<p>Run of the mill factor analysis, pulling out 2 factors given theory and parallel analysis. Used varimax by default.</p>
+<pre class="r"><code>fac &lt;- fa(ab, nfactors = 2, rotate = &quot;varimax&quot;)   # fa to run exploratory factor analysis
+print(fac, sort=TRUE)                             # Sort loadings</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Next, use the <code>score</code> function to automatically run item analyses, reliability, and calculate your scale scores for just the positive affect PANAS items. Add the scores to your dataset. The items are as follows: <code>T1_PANAS1</code>, <code>T1_PANAS3</code>, <code>T1_PANAS5</code>, <code>T1_PANAS9</code>, <code>T1_PANAS10</code>, <code>T1_PANAS12</code>, <code>T1_PANAS14</code>, <code>T1_PANAS16</code>, <code>T1_PANAS17</code>, <code>T1_PANAS19</code></li>
+</ol>
+<pre class="r"><code>keys.list &lt;- list(PA = c(&quot;T1_PANAS1&quot;, &quot;T1_PANAS3&quot;, &quot;T1_PANAS5&quot;, &quot;T1_PANAS9&quot;, &quot;T1_PANAS10&quot;, &quot;T1_PANAS12&quot;, &quot;T1_PANAS14&quot;, &quot;T1_PANAS16&quot;, 
+                         &quot;T1_PANAS17&quot;, &quot;T1_PANAS19&quot;))
+PAscore &lt;- scoreItems(keys.list, NAPS)
+NAPS &lt;- cbind(NAPS, PAscore$scores)</code></pre>
+</div>
+</div>
+<div id="tidy-data" class="section level1">
+<h1>Tidy Data</h1>
+<p>Tidy data is data that’s easy to work with: it’s easy to munge (with dplyr), visualise (with ggplot2 or ggvis) and model (with R’s hundreds of modelling packages). In order to facilitate the data analysis pipeline, it is crucial to have tidy data. What this means is that <em>every column in your data frame represents a variable and every row represents an observation.</em> This is also referred to as <strong>long format</strong> (as opposed to wide format).</p>
+<p><code>Gather</code> takes a <strong>wide</strong> data set and makes it <strong>long</strong>. This occurs when our data is “unstacked”, meaning a common attribute or variable of concern is spread out across columns. In Psychology, the time of measurement is often spread across multiple columns with the same outcome being measured at each point. Other examples include within-person factors, splitting data by a group (e.g., male aggression, female aggression as separate columns), or measures from different people using the same tool (e.g., mother’s depression, father’s depression). Here are the main arguments for <code>gather</code>.</p>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="79%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Argument</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>data</code></td>
+<td align="left">A data frame</td>
+</tr>
+<tr class="even">
+<td align="left"><code>key</code></td>
+<td align="left">Name of new column which will store the condition/IV columns which are spread out across your data</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>value</code></td>
+<td align="left">Name of new column which stores the response/DV values in the cells.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>...</code></td>
+<td align="left">A selection of columns to be collapsed into the <code>key</code> column. Select a range with <code>:</code> or exclude columns with <code>-</code>. If blank, all columns are collapsed.</td>
+</tr>
+</tbody>
+</table>
+<p>Keys specify the name of a <strong>new column</strong> in which you will <strong>gather up</strong> several pre-existing colum names and assemble together. Values will also create a <strong>new column</strong>, but one which represents whatever the data in the cells represent. You can think of keys as corresponding to the columns of a variable which is too wide and the values as representing the same kind of information stored under each of these columns. Let’s look at a few examples. Below I will simulate fake data where participants were asked to rate three different faces on attractiveness on a scale of 1 to 10.</p>
+<pre class="r"><code>set.seed(1)
+wide &lt;- data.frame(
+  ID = c(1:10),
+  Face.1 = round(rnorm(10, 7, 1), 0),
+  Face.2 = round(rnorm(10, 5, 1), 0),
+  Face.3 = round(rnorm(10, 3, 1), 0)
+)
+wide</code></pre>
+<pre><code>##    ID Face.1 Face.2 Face.3
+## 1   1      6      7      4
+## 2   2      7      5      4
+## 3   3      6      4      3
+## 4   4      9      3      1
+## 5   5      7      6      4
+## 6   6      6      5      3
+## 7   7      7      5      3
+## 8   8      8      6      2
+## 9   9      8      6      3
+## 10 10      7      6      3</code></pre>
+<p>This dataset is messy. As you can see, only ID is stored in a single column. Attractiveness rating (the DV) is split between the three faces, such that responses are in both rows <strong>and</strong> columns. What we want instead is one column for condition (Face.1, Face.2, or Face.3) responses and a column for attractiveness ratings, with each row being a <em>singular observation for each participant</em>. Participants IDs should repeat as this is a within-subect design (each participant saw each face). We can use <code>gather</code> to fix this issue.</p>
+<pre class="r"><code>long &lt;- gather(wide, Face, Attractive, Face.1:Face.3)</code></pre>
+<p>Let’s take another example. Say we are doing a health experiment involving excercise (condition 2) or no activity (condition 1) as a between-subject IV and administering two types of drugs (a and b) as a within-person IV. At each drug administration we measure the participant’s heart rate. Hypothetical data is presented below.</p>
+<pre class="r"><code>messy &lt;- data.frame(
+  name = c(&quot;Wilbur&quot;, &quot;Petunia&quot;, &quot;Gregory&quot;, &quot;Joe&quot;),
+  sex = c(&quot;m&quot;, &quot;f&quot;, &quot;m&quot;, &quot;m&quot;),
+  condition = rep(1:2, each = 2),
+  druga = c(67, 80, 64, 101),
+  drugb = c(56, 90, 50, 66)
+)
+messy</code></pre>
+<pre><code>##      name sex condition druga drugb
+## 1  Wilbur   m         1    67    56
+## 2 Petunia   f         1    80    90
+## 3 Gregory   m         2    64    50
+## 4     Joe   m         2   101    66</code></pre>
+<p>What would we want to <code>gather</code> up inside of this data frame? In other words, where is there an attribute being split across columns with the same information store below? In this scenario, <code>drug</code> is the attribute we can gather up into its own column whereas <code>heart rate</code> is the corresponding value being measured. We can fix this as follows.</p>
+<pre class="r"><code>tidied &lt;- gather(messy, drug, heartrate, c(druga, drugb))
+tidied</code></pre>
+<pre><code>##      name sex condition  drug heartrate
+## 1  Wilbur   m         1 druga        67
+## 2 Petunia   f         1 druga        80
+## 3 Gregory   m         2 druga        64
+## 4     Joe   m         2 druga       101
+## 5  Wilbur   m         1 drugb        56
+## 6 Petunia   f         1 drugb        90
+## 7 Gregory   m         2 drugb        50
+## 8     Joe   m         2 drugb        66</code></pre>
+<p>Sometimes two variables or more variables are clumped together in one column. The <code>separate()</code> function allows you to tease them apart and typically requires at least 4 arguments.</p>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="79%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Argument</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>data</code></td>
+<td align="left">A data frame</td>
+</tr>
+<tr class="even">
+<td align="left"><code>col</code></td>
+<td align="left">Name of the column you wish to split apart</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>into</code></td>
+<td align="left">Names of new variables you want to split the <code>col</code> into.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>sep</code></td>
+<td align="left">The separator between attributes in the <code>col</code> argument. If a character (e.g., “a”, "_", etc…), is interpreted as a regular expression. The default is a reg expression matching any sequence. Ifnumberic, interpreted as position to split (e.g., 4 characters in). POsitive values start at 1 position on left, negative values start -1 at at far right.</td>
+</tr>
+</tbody>
+</table>
+<p>Take a hypothetical study on work-family distraction. We are measuring how much people get distracted by their phone at both work and home at two time points. Participants are assigned to a mindfulness intervention (treatment) or nothing (control).</p>
+<pre class="r"><code>set.seed(10)
+messy &lt;- data.frame(
+  id = 1:4,
+  trt = sample(rep(c(&#39;control&#39;, &#39;treatment&#39;), each = 2)),
+  work.T1 = runif(4),
+  home.T1 = runif(4),
+  work.T2 = runif(4),
+  home.T2 = runif(4)
+)
+messy</code></pre>
+<pre><code>##   id       trt    work.T1   home.T1   work.T2    home.T2
+## 1  1 treatment 0.08513597 0.6158293 0.1135090 0.05190332
+## 2  2   control 0.22543662 0.4296715 0.5959253 0.26417767
+## 3  3 treatment 0.27453052 0.6516557 0.3580500 0.39879073
+## 4  4   control 0.27230507 0.5677378 0.4288094 0.83613414</code></pre>
+<p>In this dataset, we would first want to <code>gather</code> the last 4 columns into a <code>key</code> column and the cell phone distraction into a <code>value</code> column called time. Once in long format, we then then <code>separate</code> the location (work v home) from the time point (T1 v T2) based upon the <code>.</code> which always delimits the two attributes. We will need to escape the period with two forward slashes, <code>\\</code>, so R does not interpret it as a special regex symbol. Here is how this could be specified.</p>
+<pre class="r"><code>tidier &lt;- gather(messy, key, time, -id, -trt)      # Easier to say do NOT collapse id and treatment. R will understand to collapse all remaining columns.
+tidier</code></pre>
+<pre><code>##    id       trt     key       time
+## 1   1 treatment work.T1 0.08513597
+## 2   2   control work.T1 0.22543662
+## 3   3 treatment work.T1 0.27453052
+## 4   4   control work.T1 0.27230507
+## 5   1 treatment home.T1 0.61582931
+## 6   2   control home.T1 0.42967153
+## 7   3 treatment home.T1 0.65165567
+## 8   4   control home.T1 0.56773775
+## 9   1 treatment work.T2 0.11350898
+## 10  2   control work.T2 0.59592531
+## 11  3 treatment work.T2 0.35804998
+## 12  4   control work.T2 0.42880942
+## 13  1 treatment home.T2 0.05190332
+## 14  2   control home.T2 0.26417767
+## 15  3 treatment home.T2 0.39879073
+## 16  4   control home.T2 0.83613414</code></pre>
+<pre class="r"><code>tidy &lt;- tidier %&gt;%
+  separate(key, into = c(&quot;Location&quot;, &quot;Time Point&quot;), sep = &quot;\\.&quot;)
+tidy</code></pre>
+<pre><code>##    id       trt Location Time Point       time
+## 1   1 treatment     work         T1 0.08513597
+## 2   2   control     work         T1 0.22543662
+## 3   3 treatment     work         T1 0.27453052
+## 4   4   control     work         T1 0.27230507
+## 5   1 treatment     home         T1 0.61582931
+## 6   2   control     home         T1 0.42967153
+## 7   3 treatment     home         T1 0.65165567
+## 8   4   control     home         T1 0.56773775
+## 9   1 treatment     work         T2 0.11350898
+## 10  2   control     work         T2 0.59592531
+## 11  3 treatment     work         T2 0.35804998
+## 12  4   control     work         T2 0.42880942
+## 13  1 treatment     home         T2 0.05190332
+## 14  2   control     home         T2 0.26417767
+## 15  3 treatment     home         T2 0.39879073
+## 16  4   control     home         T2 0.83613414</code></pre>
+<p>Finally, <code>spread()</code> is the complement of <code>gather()</code>. It takes long data frames and <em>spreads it out</em> to make it wide. Sometimes this is useful if exporting data to different programs, if a function requires wide (although this is rare in R), or just for presentation sake. The spread arguments are as follows.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Argument</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>data</code></td>
+<td align="left">A data frame</td>
+</tr>
+<tr class="even">
+<td align="left"><code>key</code></td>
+<td align="left">Name of column whose values will be used as column headings.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>value</code></td>
+<td align="left">Names of column whos values will populate the cells.</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>Remember our <code>long</code> dataframe from above with the faces. Let’s see if we can change this back to its original wide format. In this scenario, we want the different Faces in the <code>Face</code> column to become new columns, one per face, while the actual dependent variable of attractiveness should populate these new face columns. In effect, this command is the reversal of what we did with <code>gather</code>.</p>
+<pre class="r"><code>spread(long, Face, Attractive)</code></pre>
+<pre><code>##    ID Face.1 Face.2 Face.3
+## 1   1      6      7      4
+## 2   2      7      5      4
+## 3   3      6      4      3
+## 4   4      9      3      1
+## 5   5      7      6      4
+## 6   6      6      5      3
+## 7   7      7      5      3
+## 8   8      8      6      2
+## 9   9      8      6      3
+## 10 10      7      6      3</code></pre>
+<p>And there you have it. You have come full circle back to wide.</p>
+<div id="exercise---tidying-up" class="section level3">
+<h3>Exercise - Tidying Up</h3>
+<ol style="list-style-type: decimal">
+<li><p>There is an untidy dataset called <code>iris</code> built into R. The four columns represent the separate measurement of length and width of sepals and petals on three different flowers. All measures are made in centimeters. Can you tidy this data into just 3 columns?</p></li>
+<li><p>Tidy the NAPS dataset based upon the 4 VAS columns. Once tidied, <code>separate</code> the columns into Time and Vas.</p></li>
+</ol>
+<pre class="r"><code># Solution 1
+head(iris)</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<pre class="r"><code>gather(iris, PlantMeasure, Centimeters, -Species)    #Fastest way is to tell gather to assemble all columns except last one</code></pre>
+<pre><code>##        Species PlantMeasure Centimeters
+## 1       setosa Sepal.Length         5.1
+## 2       setosa Sepal.Length         4.9
+## 3       setosa Sepal.Length         4.7
+## 4       setosa Sepal.Length         4.6
+## 5       setosa Sepal.Length         5.0
+## 6       setosa Sepal.Length         5.4
+## 7       setosa Sepal.Length         4.6
+## 8       setosa Sepal.Length         5.0
+## 9       setosa Sepal.Length         4.4
+## 10      setosa Sepal.Length         4.9
+## 11      setosa Sepal.Length         5.4
+## 12      setosa Sepal.Length         4.8
+## 13      setosa Sepal.Length         4.8
+## 14      setosa Sepal.Length         4.3
+## 15      setosa Sepal.Length         5.8
+## 16      setosa Sepal.Length         5.7
+## 17      setosa Sepal.Length         5.4
+## 18      setosa Sepal.Length         5.1
+## 19      setosa Sepal.Length         5.7
+## 20      setosa Sepal.Length         5.1
+## 21      setosa Sepal.Length         5.4
+## 22      setosa Sepal.Length         5.1
+## 23      setosa Sepal.Length         4.6
+## 24      setosa Sepal.Length         5.1
+## 25      setosa Sepal.Length         4.8
+## 26      setosa Sepal.Length         5.0
+## 27      setosa Sepal.Length         5.0
+## 28      setosa Sepal.Length         5.2
+## 29      setosa Sepal.Length         5.2
+## 30      setosa Sepal.Length         4.7
+## 31      setosa Sepal.Length         4.8
+## 32      setosa Sepal.Length         5.4
+## 33      setosa Sepal.Length         5.2
+## 34      setosa Sepal.Length         5.5
+## 35      setosa Sepal.Length         4.9
+## 36      setosa Sepal.Length         5.0
+## 37      setosa Sepal.Length         5.5
+## 38      setosa Sepal.Length         4.9
+## 39      setosa Sepal.Length         4.4
+## 40      setosa Sepal.Length         5.1
+## 41      setosa Sepal.Length         5.0
+## 42      setosa Sepal.Length         4.5
+## 43      setosa Sepal.Length         4.4
+## 44      setosa Sepal.Length         5.0
+## 45      setosa Sepal.Length         5.1
+## 46      setosa Sepal.Length         4.8
+## 47      setosa Sepal.Length         5.1
+## 48      setosa Sepal.Length         4.6
+## 49      setosa Sepal.Length         5.3
+## 50      setosa Sepal.Length         5.0
+## 51  versicolor Sepal.Length         7.0
+## 52  versicolor Sepal.Length         6.4
+## 53  versicolor Sepal.Length         6.9
+## 54  versicolor Sepal.Length         5.5
+## 55  versicolor Sepal.Length         6.5
+## 56  versicolor Sepal.Length         5.7
+## 57  versicolor Sepal.Length         6.3
+## 58  versicolor Sepal.Length         4.9
+## 59  versicolor Sepal.Length         6.6
+## 60  versicolor Sepal.Length         5.2
+## 61  versicolor Sepal.Length         5.0
+## 62  versicolor Sepal.Length         5.9
+## 63  versicolor Sepal.Length         6.0
+## 64  versicolor Sepal.Length         6.1
+## 65  versicolor Sepal.Length         5.6
+## 66  versicolor Sepal.Length         6.7
+## 67  versicolor Sepal.Length         5.6
+## 68  versicolor Sepal.Length         5.8
+## 69  versicolor Sepal.Length         6.2
+## 70  versicolor Sepal.Length         5.6
+## 71  versicolor Sepal.Length         5.9
+## 72  versicolor Sepal.Length         6.1
+## 73  versicolor Sepal.Length         6.3
+## 74  versicolor Sepal.Length         6.1
+## 75  versicolor Sepal.Length         6.4
+## 76  versicolor Sepal.Length         6.6
+## 77  versicolor Sepal.Length         6.8
+## 78  versicolor Sepal.Length         6.7
+## 79  versicolor Sepal.Length         6.0
+## 80  versicolor Sepal.Length         5.7
+## 81  versicolor Sepal.Length         5.5
+## 82  versicolor Sepal.Length         5.5
+## 83  versicolor Sepal.Length         5.8
+## 84  versicolor Sepal.Length         6.0
+## 85  versicolor Sepal.Length         5.4
+## 86  versicolor Sepal.Length         6.0
+## 87  versicolor Sepal.Length         6.7
+## 88  versicolor Sepal.Length         6.3
+## 89  versicolor Sepal.Length         5.6
+## 90  versicolor Sepal.Length         5.5
+## 91  versicolor Sepal.Length         5.5
+## 92  versicolor Sepal.Length         6.1
+## 93  versicolor Sepal.Length         5.8
+## 94  versicolor Sepal.Length         5.0
+## 95  versicolor Sepal.Length         5.6
+## 96  versicolor Sepal.Length         5.7
+## 97  versicolor Sepal.Length         5.7
+## 98  versicolor Sepal.Length         6.2
+## 99  versicolor Sepal.Length         5.1
+## 100 versicolor Sepal.Length         5.7
+## 101  virginica Sepal.Length         6.3
+## 102  virginica Sepal.Length         5.8
+## 103  virginica Sepal.Length         7.1
+## 104  virginica Sepal.Length         6.3
+## 105  virginica Sepal.Length         6.5
+## 106  virginica Sepal.Length         7.6
+## 107  virginica Sepal.Length         4.9
+## 108  virginica Sepal.Length         7.3
+## 109  virginica Sepal.Length         6.7
+## 110  virginica Sepal.Length         7.2
+## 111  virginica Sepal.Length         6.5
+## 112  virginica Sepal.Length         6.4
+## 113  virginica Sepal.Length         6.8
+## 114  virginica Sepal.Length         5.7
+## 115  virginica Sepal.Length         5.8
+## 116  virginica Sepal.Length         6.4
+## 117  virginica Sepal.Length         6.5
+## 118  virginica Sepal.Length         7.7
+## 119  virginica Sepal.Length         7.7
+## 120  virginica Sepal.Length         6.0
+## 121  virginica Sepal.Length         6.9
+## 122  virginica Sepal.Length         5.6
+## 123  virginica Sepal.Length         7.7
+## 124  virginica Sepal.Length         6.3
+## 125  virginica Sepal.Length         6.7
+## 126  virginica Sepal.Length         7.2
+## 127  virginica Sepal.Length         6.2
+## 128  virginica Sepal.Length         6.1
+## 129  virginica Sepal.Length         6.4
+## 130  virginica Sepal.Length         7.2
+## 131  virginica Sepal.Length         7.4
+## 132  virginica Sepal.Length         7.9
+## 133  virginica Sepal.Length         6.4
+## 134  virginica Sepal.Length         6.3
+## 135  virginica Sepal.Length         6.1
+## 136  virginica Sepal.Length         7.7
+## 137  virginica Sepal.Length         6.3
+## 138  virginica Sepal.Length         6.4
+## 139  virginica Sepal.Length         6.0
+## 140  virginica Sepal.Length         6.9
+## 141  virginica Sepal.Length         6.7
+## 142  virginica Sepal.Length         6.9
+## 143  virginica Sepal.Length         5.8
+## 144  virginica Sepal.Length         6.8
+## 145  virginica Sepal.Length         6.7
+## 146  virginica Sepal.Length         6.7
+## 147  virginica Sepal.Length         6.3
+## 148  virginica Sepal.Length         6.5
+## 149  virginica Sepal.Length         6.2
+## 150  virginica Sepal.Length         5.9
+## 151     setosa  Sepal.Width         3.5
+## 152     setosa  Sepal.Width         3.0
+## 153     setosa  Sepal.Width         3.2
+## 154     setosa  Sepal.Width         3.1
+## 155     setosa  Sepal.Width         3.6
+## 156     setosa  Sepal.Width         3.9
+## 157     setosa  Sepal.Width         3.4
+## 158     setosa  Sepal.Width         3.4
+## 159     setosa  Sepal.Width         2.9
+## 160     setosa  Sepal.Width         3.1
+## 161     setosa  Sepal.Width         3.7
+## 162     setosa  Sepal.Width         3.4
+## 163     setosa  Sepal.Width         3.0
+## 164     setosa  Sepal.Width         3.0
+## 165     setosa  Sepal.Width         4.0
+## 166     setosa  Sepal.Width         4.4
+## 167     setosa  Sepal.Width         3.9
+## 168     setosa  Sepal.Width         3.5
+## 169     setosa  Sepal.Width         3.8
+## 170     setosa  Sepal.Width         3.8
+## 171     setosa  Sepal.Width         3.4
+## 172     setosa  Sepal.Width         3.7
+## 173     setosa  Sepal.Width         3.6
+## 174     setosa  Sepal.Width         3.3
+## 175     setosa  Sepal.Width         3.4
+## 176     setosa  Sepal.Width         3.0
+## 177     setosa  Sepal.Width         3.4
+## 178     setosa  Sepal.Width         3.5
+## 179     setosa  Sepal.Width         3.4
+## 180     setosa  Sepal.Width         3.2
+## 181     setosa  Sepal.Width         3.1
+## 182     setosa  Sepal.Width         3.4
+## 183     setosa  Sepal.Width         4.1
+## 184     setosa  Sepal.Width         4.2
+## 185     setosa  Sepal.Width         3.1
+## 186     setosa  Sepal.Width         3.2
+## 187     setosa  Sepal.Width         3.5
+## 188     setosa  Sepal.Width         3.6
+## 189     setosa  Sepal.Width         3.0
+## 190     setosa  Sepal.Width         3.4
+## 191     setosa  Sepal.Width         3.5
+## 192     setosa  Sepal.Width         2.3
+## 193     setosa  Sepal.Width         3.2
+## 194     setosa  Sepal.Width         3.5
+## 195     setosa  Sepal.Width         3.8
+## 196     setosa  Sepal.Width         3.0
+## 197     setosa  Sepal.Width         3.8
+## 198     setosa  Sepal.Width         3.2
+## 199     setosa  Sepal.Width         3.7
+## 200     setosa  Sepal.Width         3.3
+## 201 versicolor  Sepal.Width         3.2
+## 202 versicolor  Sepal.Width         3.2
+## 203 versicolor  Sepal.Width         3.1
+## 204 versicolor  Sepal.Width         2.3
+## 205 versicolor  Sepal.Width         2.8
+## 206 versicolor  Sepal.Width         2.8
+## 207 versicolor  Sepal.Width         3.3
+## 208 versicolor  Sepal.Width         2.4
+## 209 versicolor  Sepal.Width         2.9
+## 210 versicolor  Sepal.Width         2.7
+## 211 versicolor  Sepal.Width         2.0
+## 212 versicolor  Sepal.Width         3.0
+## 213 versicolor  Sepal.Width         2.2
+## 214 versicolor  Sepal.Width         2.9
+## 215 versicolor  Sepal.Width         2.9
+## 216 versicolor  Sepal.Width         3.1
+## 217 versicolor  Sepal.Width         3.0
+## 218 versicolor  Sepal.Width         2.7
+## 219 versicolor  Sepal.Width         2.2
+## 220 versicolor  Sepal.Width         2.5
+## 221 versicolor  Sepal.Width         3.2
+## 222 versicolor  Sepal.Width         2.8
+## 223 versicolor  Sepal.Width         2.5
+## 224 versicolor  Sepal.Width         2.8
+## 225 versicolor  Sepal.Width         2.9
+## 226 versicolor  Sepal.Width         3.0
+## 227 versicolor  Sepal.Width         2.8
+## 228 versicolor  Sepal.Width         3.0
+## 229 versicolor  Sepal.Width         2.9
+## 230 versicolor  Sepal.Width         2.6
+## 231 versicolor  Sepal.Width         2.4
+## 232 versicolor  Sepal.Width         2.4
+## 233 versicolor  Sepal.Width         2.7
+## 234 versicolor  Sepal.Width         2.7
+## 235 versicolor  Sepal.Width         3.0
+## 236 versicolor  Sepal.Width         3.4
+## 237 versicolor  Sepal.Width         3.1
+## 238 versicolor  Sepal.Width         2.3
+## 239 versicolor  Sepal.Width         3.0
+## 240 versicolor  Sepal.Width         2.5
+## 241 versicolor  Sepal.Width         2.6
+## 242 versicolor  Sepal.Width         3.0
+## 243 versicolor  Sepal.Width         2.6
+## 244 versicolor  Sepal.Width         2.3
+## 245 versicolor  Sepal.Width         2.7
+## 246 versicolor  Sepal.Width         3.0
+## 247 versicolor  Sepal.Width         2.9
+## 248 versicolor  Sepal.Width         2.9
+## 249 versicolor  Sepal.Width         2.5
+## 250 versicolor  Sepal.Width         2.8
+## 251  virginica  Sepal.Width         3.3
+## 252  virginica  Sepal.Width         2.7
+## 253  virginica  Sepal.Width         3.0
+## 254  virginica  Sepal.Width         2.9
+## 255  virginica  Sepal.Width         3.0
+## 256  virginica  Sepal.Width         3.0
+## 257  virginica  Sepal.Width         2.5
+## 258  virginica  Sepal.Width         2.9
+## 259  virginica  Sepal.Width         2.5
+## 260  virginica  Sepal.Width         3.6
+## 261  virginica  Sepal.Width         3.2
+## 262  virginica  Sepal.Width         2.7
+## 263  virginica  Sepal.Width         3.0
+## 264  virginica  Sepal.Width         2.5
+## 265  virginica  Sepal.Width         2.8
+## 266  virginica  Sepal.Width         3.2
+## 267  virginica  Sepal.Width         3.0
+## 268  virginica  Sepal.Width         3.8
+## 269  virginica  Sepal.Width         2.6
+## 270  virginica  Sepal.Width         2.2
+## 271  virginica  Sepal.Width         3.2
+## 272  virginica  Sepal.Width         2.8
+## 273  virginica  Sepal.Width         2.8
+## 274  virginica  Sepal.Width         2.7
+## 275  virginica  Sepal.Width         3.3
+## 276  virginica  Sepal.Width         3.2
+## 277  virginica  Sepal.Width         2.8
+## 278  virginica  Sepal.Width         3.0
+## 279  virginica  Sepal.Width         2.8
+## 280  virginica  Sepal.Width         3.0
+## 281  virginica  Sepal.Width         2.8
+## 282  virginica  Sepal.Width         3.8
+## 283  virginica  Sepal.Width         2.8
+## 284  virginica  Sepal.Width         2.8
+## 285  virginica  Sepal.Width         2.6
+## 286  virginica  Sepal.Width         3.0
+## 287  virginica  Sepal.Width         3.4
+## 288  virginica  Sepal.Width         3.1
+## 289  virginica  Sepal.Width         3.0
+## 290  virginica  Sepal.Width         3.1
+## 291  virginica  Sepal.Width         3.1
+## 292  virginica  Sepal.Width         3.1
+## 293  virginica  Sepal.Width         2.7
+## 294  virginica  Sepal.Width         3.2
+## 295  virginica  Sepal.Width         3.3
+## 296  virginica  Sepal.Width         3.0
+## 297  virginica  Sepal.Width         2.5
+## 298  virginica  Sepal.Width         3.0
+## 299  virginica  Sepal.Width         3.4
+## 300  virginica  Sepal.Width         3.0
+## 301     setosa Petal.Length         1.4
+## 302     setosa Petal.Length         1.4
+## 303     setosa Petal.Length         1.3
+## 304     setosa Petal.Length         1.5
+## 305     setosa Petal.Length         1.4
+## 306     setosa Petal.Length         1.7
+## 307     setosa Petal.Length         1.4
+## 308     setosa Petal.Length         1.5
+## 309     setosa Petal.Length         1.4
+## 310     setosa Petal.Length         1.5
+## 311     setosa Petal.Length         1.5
+## 312     setosa Petal.Length         1.6
+## 313     setosa Petal.Length         1.4
+## 314     setosa Petal.Length         1.1
+## 315     setosa Petal.Length         1.2
+## 316     setosa Petal.Length         1.5
+## 317     setosa Petal.Length         1.3
+## 318     setosa Petal.Length         1.4
+## 319     setosa Petal.Length         1.7
+## 320     setosa Petal.Length         1.5
+## 321     setosa Petal.Length         1.7
+## 322     setosa Petal.Length         1.5
+## 323     setosa Petal.Length         1.0
+## 324     setosa Petal.Length         1.7
+## 325     setosa Petal.Length         1.9
+## 326     setosa Petal.Length         1.6
+## 327     setosa Petal.Length         1.6
+## 328     setosa Petal.Length         1.5
+## 329     setosa Petal.Length         1.4
+## 330     setosa Petal.Length         1.6
+## 331     setosa Petal.Length         1.6
+## 332     setosa Petal.Length         1.5
+## 333     setosa Petal.Length         1.5
+## 334     setosa Petal.Length         1.4
+## 335     setosa Petal.Length         1.5
+## 336     setosa Petal.Length         1.2
+## 337     setosa Petal.Length         1.3
+## 338     setosa Petal.Length         1.4
+## 339     setosa Petal.Length         1.3
+## 340     setosa Petal.Length         1.5
+## 341     setosa Petal.Length         1.3
+## 342     setosa Petal.Length         1.3
+## 343     setosa Petal.Length         1.3
+## 344     setosa Petal.Length         1.6
+## 345     setosa Petal.Length         1.9
+## 346     setosa Petal.Length         1.4
+## 347     setosa Petal.Length         1.6
+## 348     setosa Petal.Length         1.4
+## 349     setosa Petal.Length         1.5
+## 350     setosa Petal.Length         1.4
+## 351 versicolor Petal.Length         4.7
+## 352 versicolor Petal.Length         4.5
+## 353 versicolor Petal.Length         4.9
+## 354 versicolor Petal.Length         4.0
+## 355 versicolor Petal.Length         4.6
+## 356 versicolor Petal.Length         4.5
+## 357 versicolor Petal.Length         4.7
+## 358 versicolor Petal.Length         3.3
+## 359 versicolor Petal.Length         4.6
+## 360 versicolor Petal.Length         3.9
+## 361 versicolor Petal.Length         3.5
+## 362 versicolor Petal.Length         4.2
+## 363 versicolor Petal.Length         4.0
+## 364 versicolor Petal.Length         4.7
+## 365 versicolor Petal.Length         3.6
+## 366 versicolor Petal.Length         4.4
+## 367 versicolor Petal.Length         4.5
+## 368 versicolor Petal.Length         4.1
+## 369 versicolor Petal.Length         4.5
+## 370 versicolor Petal.Length         3.9
+## 371 versicolor Petal.Length         4.8
+## 372 versicolor Petal.Length         4.0
+## 373 versicolor Petal.Length         4.9
+## 374 versicolor Petal.Length         4.7
+## 375 versicolor Petal.Length         4.3
+## 376 versicolor Petal.Length         4.4
+## 377 versicolor Petal.Length         4.8
+## 378 versicolor Petal.Length         5.0
+## 379 versicolor Petal.Length         4.5
+## 380 versicolor Petal.Length         3.5
+## 381 versicolor Petal.Length         3.8
+## 382 versicolor Petal.Length         3.7
+## 383 versicolor Petal.Length         3.9
+## 384 versicolor Petal.Length         5.1
+## 385 versicolor Petal.Length         4.5
+## 386 versicolor Petal.Length         4.5
+## 387 versicolor Petal.Length         4.7
+## 388 versicolor Petal.Length         4.4
+## 389 versicolor Petal.Length         4.1
+## 390 versicolor Petal.Length         4.0
+## 391 versicolor Petal.Length         4.4
+## 392 versicolor Petal.Length         4.6
+## 393 versicolor Petal.Length         4.0
+## 394 versicolor Petal.Length         3.3
+## 395 versicolor Petal.Length         4.2
+## 396 versicolor Petal.Length         4.2
+## 397 versicolor Petal.Length         4.2
+## 398 versicolor Petal.Length         4.3
+## 399 versicolor Petal.Length         3.0
+## 400 versicolor Petal.Length         4.1
+## 401  virginica Petal.Length         6.0
+## 402  virginica Petal.Length         5.1
+## 403  virginica Petal.Length         5.9
+## 404  virginica Petal.Length         5.6
+## 405  virginica Petal.Length         5.8
+## 406  virginica Petal.Length         6.6
+## 407  virginica Petal.Length         4.5
+## 408  virginica Petal.Length         6.3
+## 409  virginica Petal.Length         5.8
+## 410  virginica Petal.Length         6.1
+## 411  virginica Petal.Length         5.1
+## 412  virginica Petal.Length         5.3
+## 413  virginica Petal.Length         5.5
+## 414  virginica Petal.Length         5.0
+## 415  virginica Petal.Length         5.1
+## 416  virginica Petal.Length         5.3
+## 417  virginica Petal.Length         5.5
+## 418  virginica Petal.Length         6.7
+## 419  virginica Petal.Length         6.9
+## 420  virginica Petal.Length         5.0
+## 421  virginica Petal.Length         5.7
+## 422  virginica Petal.Length         4.9
+## 423  virginica Petal.Length         6.7
+## 424  virginica Petal.Length         4.9
+## 425  virginica Petal.Length         5.7
+## 426  virginica Petal.Length         6.0
+## 427  virginica Petal.Length         4.8
+## 428  virginica Petal.Length         4.9
+## 429  virginica Petal.Length         5.6
+## 430  virginica Petal.Length         5.8
+## 431  virginica Petal.Length         6.1
+## 432  virginica Petal.Length         6.4
+## 433  virginica Petal.Length         5.6
+## 434  virginica Petal.Length         5.1
+## 435  virginica Petal.Length         5.6
+## 436  virginica Petal.Length         6.1
+## 437  virginica Petal.Length         5.6
+## 438  virginica Petal.Length         5.5
+## 439  virginica Petal.Length         4.8
+## 440  virginica Petal.Length         5.4
+## 441  virginica Petal.Length         5.6
+## 442  virginica Petal.Length         5.1
+## 443  virginica Petal.Length         5.1
+## 444  virginica Petal.Length         5.9
+## 445  virginica Petal.Length         5.7
+## 446  virginica Petal.Length         5.2
+## 447  virginica Petal.Length         5.0
+## 448  virginica Petal.Length         5.2
+## 449  virginica Petal.Length         5.4
+## 450  virginica Petal.Length         5.1
+## 451     setosa  Petal.Width         0.2
+## 452     setosa  Petal.Width         0.2
+## 453     setosa  Petal.Width         0.2
+## 454     setosa  Petal.Width         0.2
+## 455     setosa  Petal.Width         0.2
+## 456     setosa  Petal.Width         0.4
+## 457     setosa  Petal.Width         0.3
+## 458     setosa  Petal.Width         0.2
+## 459     setosa  Petal.Width         0.2
+## 460     setosa  Petal.Width         0.1
+## 461     setosa  Petal.Width         0.2
+## 462     setosa  Petal.Width         0.2
+## 463     setosa  Petal.Width         0.1
+## 464     setosa  Petal.Width         0.1
+## 465     setosa  Petal.Width         0.2
+## 466     setosa  Petal.Width         0.4
+## 467     setosa  Petal.Width         0.4
+## 468     setosa  Petal.Width         0.3
+## 469     setosa  Petal.Width         0.3
+## 470     setosa  Petal.Width         0.3
+## 471     setosa  Petal.Width         0.2
+## 472     setosa  Petal.Width         0.4
+## 473     setosa  Petal.Width         0.2
+## 474     setosa  Petal.Width         0.5
+## 475     setosa  Petal.Width         0.2
+## 476     setosa  Petal.Width         0.2
+## 477     setosa  Petal.Width         0.4
+## 478     setosa  Petal.Width         0.2
+## 479     setosa  Petal.Width         0.2
+## 480     setosa  Petal.Width         0.2
+## 481     setosa  Petal.Width         0.2
+## 482     setosa  Petal.Width         0.4
+## 483     setosa  Petal.Width         0.1
+## 484     setosa  Petal.Width         0.2
+## 485     setosa  Petal.Width         0.2
+## 486     setosa  Petal.Width         0.2
+## 487     setosa  Petal.Width         0.2
+## 488     setosa  Petal.Width         0.1
+## 489     setosa  Petal.Width         0.2
+## 490     setosa  Petal.Width         0.2
+## 491     setosa  Petal.Width         0.3
+## 492     setosa  Petal.Width         0.3
+## 493     setosa  Petal.Width         0.2
+## 494     setosa  Petal.Width         0.6
+## 495     setosa  Petal.Width         0.4
+## 496     setosa  Petal.Width         0.3
+## 497     setosa  Petal.Width         0.2
+## 498     setosa  Petal.Width         0.2
+## 499     setosa  Petal.Width         0.2
+## 500     setosa  Petal.Width         0.2
+## 501 versicolor  Petal.Width         1.4
+## 502 versicolor  Petal.Width         1.5
+## 503 versicolor  Petal.Width         1.5
+## 504 versicolor  Petal.Width         1.3
+## 505 versicolor  Petal.Width         1.5
+## 506 versicolor  Petal.Width         1.3
+## 507 versicolor  Petal.Width         1.6
+## 508 versicolor  Petal.Width         1.0
+## 509 versicolor  Petal.Width         1.3
+## 510 versicolor  Petal.Width         1.4
+## 511 versicolor  Petal.Width         1.0
+## 512 versicolor  Petal.Width         1.5
+## 513 versicolor  Petal.Width         1.0
+## 514 versicolor  Petal.Width         1.4
+## 515 versicolor  Petal.Width         1.3
+## 516 versicolor  Petal.Width         1.4
+## 517 versicolor  Petal.Width         1.5
+## 518 versicolor  Petal.Width         1.0
+## 519 versicolor  Petal.Width         1.5
+## 520 versicolor  Petal.Width         1.1
+## 521 versicolor  Petal.Width         1.8
+## 522 versicolor  Petal.Width         1.3
+## 523 versicolor  Petal.Width         1.5
+## 524 versicolor  Petal.Width         1.2
+## 525 versicolor  Petal.Width         1.3
+## 526 versicolor  Petal.Width         1.4
+## 527 versicolor  Petal.Width         1.4
+## 528 versicolor  Petal.Width         1.7
+## 529 versicolor  Petal.Width         1.5
+## 530 versicolor  Petal.Width         1.0
+## 531 versicolor  Petal.Width         1.1
+## 532 versicolor  Petal.Width         1.0
+## 533 versicolor  Petal.Width         1.2
+## 534 versicolor  Petal.Width         1.6
+## 535 versicolor  Petal.Width         1.5
+## 536 versicolor  Petal.Width         1.6
+## 537 versicolor  Petal.Width         1.5
+## 538 versicolor  Petal.Width         1.3
+## 539 versicolor  Petal.Width         1.3
+## 540 versicolor  Petal.Width         1.3
+## 541 versicolor  Petal.Width         1.2
+## 542 versicolor  Petal.Width         1.4
+## 543 versicolor  Petal.Width         1.2
+## 544 versicolor  Petal.Width         1.0
+## 545 versicolor  Petal.Width         1.3
+## 546 versicolor  Petal.Width         1.2
+## 547 versicolor  Petal.Width         1.3
+## 548 versicolor  Petal.Width         1.3
+## 549 versicolor  Petal.Width         1.1
+## 550 versicolor  Petal.Width         1.3
+## 551  virginica  Petal.Width         2.5
+## 552  virginica  Petal.Width         1.9
+## 553  virginica  Petal.Width         2.1
+## 554  virginica  Petal.Width         1.8
+## 555  virginica  Petal.Width         2.2
+## 556  virginica  Petal.Width         2.1
+## 557  virginica  Petal.Width         1.7
+## 558  virginica  Petal.Width         1.8
+## 559  virginica  Petal.Width         1.8
+## 560  virginica  Petal.Width         2.5
+## 561  virginica  Petal.Width         2.0
+## 562  virginica  Petal.Width         1.9
+## 563  virginica  Petal.Width         2.1
+## 564  virginica  Petal.Width         2.0
+## 565  virginica  Petal.Width         2.4
+## 566  virginica  Petal.Width         2.3
+## 567  virginica  Petal.Width         1.8
+## 568  virginica  Petal.Width         2.2
+## 569  virginica  Petal.Width         2.3
+## 570  virginica  Petal.Width         1.5
+## 571  virginica  Petal.Width         2.3
+## 572  virginica  Petal.Width         2.0
+## 573  virginica  Petal.Width         2.0
+## 574  virginica  Petal.Width         1.8
+## 575  virginica  Petal.Width         2.1
+## 576  virginica  Petal.Width         1.8
+## 577  virginica  Petal.Width         1.8
+## 578  virginica  Petal.Width         1.8
+## 579  virginica  Petal.Width         2.1
+## 580  virginica  Petal.Width         1.6
+## 581  virginica  Petal.Width         1.9
+## 582  virginica  Petal.Width         2.0
+## 583  virginica  Petal.Width         2.2
+## 584  virginica  Petal.Width         1.5
+## 585  virginica  Petal.Width         1.4
+## 586  virginica  Petal.Width         2.3
+## 587  virginica  Petal.Width         2.4
+## 588  virginica  Petal.Width         1.8
+## 589  virginica  Petal.Width         1.8
+## 590  virginica  Petal.Width         2.1
+## 591  virginica  Petal.Width         2.4
+## 592  virginica  Petal.Width         2.3
+## 593  virginica  Petal.Width         1.9
+## 594  virginica  Petal.Width         2.3
+## 595  virginica  Petal.Width         2.5
+## 596  virginica  Petal.Width         2.3
+## 597  virginica  Petal.Width         1.9
+## 598  virginica  Petal.Width         2.0
+## 599  virginica  Petal.Width         2.3
+## 600  virginica  Petal.Width         1.8</code></pre>
+<pre class="r"><code># Solution 2
+NAPS_t &lt;- gather(NAPS, Key, Value, c(&quot;T1_Vas1&quot;, &quot;T1_Vas2&quot;, &quot;T2_Vas1&quot;, &quot;T2_Vas2&quot;)) # go from wide to long
+
+NAPS_tidy &lt;- separate(NAPS_t, Key, into = c(&quot;Time&quot;, &quot;Vas&quot;), sep = &quot;_&quot;)</code></pre>
+</div>
+</div>
+<div id="afex" class="section level1">
+<h1>Afex</h1>
+<p>Base R packages for ANOVA, especially for unbalanced designs or anything with repeated measures, is very convoluted. Note most statisticians and Big Data scientists rarely, if ever, use ANOVA-like analyses for their models. Rather, most use regression, multilevel models, or more advanced generalized linear models which are more flexible and make fewer assumptions than ANOVA. In many ways, ANOVA is a thing of the past.</p>
+<p>Yet, it still has its place and use. This is especially the case in highly controlled experiments or situations with many discrete variables. This need turned many people away from R becuse the analysis of such designs was nasty for many reasons.</p>
+<ol style="list-style-type: decimal">
+<li>There was no easy syntax for within-subjects ANOVA</li>
+<li>There were many differences in default settings compared to other software such as SPSS (Type III Sums of Squares)</li>
+<li>The setting of appropriate contrasts</li>
+</ol>
+<p>The package <code>afex</code> (analysis of factorial experiments), mainly written by <a href="http://singmann.org/">Henrik Singmann</a>, eases the process substantially. For all kinds of AN(C)OVA designs (between, within, mixed), you basically need only one function. In addition, it is recommended you install and load the package <code>emmeans</code> which perform all manner of post-hoc comparison and contrasts as well as <code>multcomp</code> which allows for more advanved forms of control for multiple tests.</p>
+<pre class="r"><code>library(afex)        # Need for ANOVA functions</code></pre>
+<pre><code>## Loading required package: lme4</code></pre>
+<pre><code>## Loading required package: Matrix</code></pre>
+<pre><code>## 
+## Attaching package: &#39;Matrix&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
+## 
+##     expand</code></pre>
+<pre><code>## ************
+## Welcome to afex. For support visit: http://afex.singmann.science/</code></pre>
+<pre><code>## - Functions for ANOVAs: aov_car(), aov_ez(), and aov_4()
+## - Methods for calculating p-values with mixed(): &#39;KR&#39;, &#39;S&#39;, &#39;LRT&#39;, and &#39;PB&#39;
+## - &#39;afex_aov&#39; and &#39;mixed&#39; objects can be passed to emmeans() for follow-up tests
+## - NEWS: library(&#39;emmeans&#39;) now needs to be called explicitly!
+## - Get and set global package options with: afex_options()
+## - Set orthogonal sum-to-zero contrasts globally: set_sum_contrasts()
+## - For example analyses see: browseVignettes(&quot;afex&quot;)
+## ************</code></pre>
+<pre><code>## 
+## Attaching package: &#39;afex&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:lme4&#39;:
+## 
+##     lmer</code></pre>
+<pre class="r"><code>library(emmeans)     # emmeans loaded for post-hoc pairwise tests and contrasts
+library(multcomp)    # for advanced control of Type I errors in multiple tests</code></pre>
+<pre><code>## Loading required package: mvtnorm</code></pre>
+<pre><code>## Loading required package: survival</code></pre>
+<pre><code>## Loading required package: TH.data</code></pre>
+<pre><code>## Loading required package: MASS</code></pre>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     select</code></pre>
+<pre><code>## 
+## Attaching package: &#39;TH.data&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:MASS&#39;:
+## 
+##     geyser</code></pre>
+<pre><code>## 
+## Attaching package: &#39;multcomp&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:emmeans&#39;:
+## 
+##     cld</code></pre>
+<pre class="r"><code>library(car)         # for obk.long dataset</code></pre>
+<pre><code>## Loading required package: carData</code></pre>
+<pre><code>## 
+## Attaching package: &#39;car&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     recode</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     some</code></pre>
+<pre><code>## The following object is masked from &#39;package:psych&#39;:
+## 
+##     logit</code></pre>
+<p>For this example, we will use the <code>obk.long</code> data set (available in the <code>car</code> package) as well as the <code>fhch2010</code> example available from <code>afex</code> by typing <code>data("fhch2010")</code>. Let’s first get familiar with the data set (always an important step).</p>
+<pre class="r"><code>data(&quot;obk.long&quot;)
+?obk.long</code></pre>
+<pre><code>## starting httpd help server ... done</code></pre>
+<pre class="r"><code>str(obk.long)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    240 obs. of  7 variables:
+##  $ id       : Factor w/ 16 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ treatment: Factor w/ 3 levels &quot;control&quot;,&quot;A&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ gender   : Factor w/ 2 levels &quot;F&quot;,&quot;M&quot;: 2 2 2 2 2 2 2 2 2 2 ...
+##  $ age      : num  -4.75 -4.75 -4.75 -4.75 -4.75 -4.75 -4.75 -4.75 -4.75 -4.75 ...
+##  $ phase    : Factor w/ 3 levels &quot;fup&quot;,&quot;post&quot;,&quot;pre&quot;: 3 3 3 3 3 2 2 2 2 2 ...
+##  $ hour     : Factor w/ 5 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 2 3 4 5 1 2 3 4 5 ...
+##  $ value    : num  1 2 4 2 1 3 2 5 3 2 ...</code></pre>
+<p>We can see in the description this is an imaginary study in which 16 female and male subjects are divided into three treatments (control, A, and B) and measured at a pre-test, post-test, and follow-up session. Further, within each session, they are measured at five occassions at intervals of one hour, hence hour is nested in phase. Before progressing, one thing to note is the <code>phase</code> has the factors ordered alphabetically as opposed to by the time they occurred (should be pre, post, fup as opposed to the other way around). If you remember from our factor lesson, we can modify these values as such:</p>
+<pre class="r"><code>obk.long$phase &lt;- factor(obk.long$phase, levels = c(&quot;pre&quot;, &quot;post&quot;, &quot;fup&quot;))
+str(obk.long)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    240 obs. of  7 variables:
+##  $ id       : Factor w/ 16 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ treatment: Factor w/ 3 levels &quot;control&quot;,&quot;A&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ gender   : Factor w/ 2 levels &quot;F&quot;,&quot;M&quot;: 2 2 2 2 2 2 2 2 2 2 ...
+##  $ age      : num  -4.75 -4.75 -4.75 -4.75 -4.75 -4.75 -4.75 -4.75 -4.75 -4.75 ...
+##  $ phase    : Factor w/ 3 levels &quot;pre&quot;,&quot;post&quot;,&quot;fup&quot;: 1 1 1 1 1 2 2 2 2 2 ...
+##  $ hour     : Factor w/ 5 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 2 3 4 5 1 2 3 4 5 ...
+##  $ value    : num  1 2 4 2 1 3 2 5 3 2 ...</code></pre>
+<p>We can see they have successfully been reordered. Continuing, the study design has two between-subject factors (gender, treatment) as well as two within-subject (phase, hour). The table below shows a breakdown of how the data are collected.</p>
+<pre class="r"><code>with(obk.long, table(treatment, id, phase))</code></pre>
+<pre><code>## , , phase = pre
+## 
+##          id
+## treatment 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+##   control 5 5 5 5 5 0 0 0 0  0  0  0  0  0  0  0
+##   A       0 0 0 0 0 5 5 5 5  0  0  0  0  0  0  0
+##   B       0 0 0 0 0 0 0 0 0  5  5  5  5  5  5  5
+## 
+## , , phase = post
+## 
+##          id
+## treatment 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+##   control 5 5 5 5 5 0 0 0 0  0  0  0  0  0  0  0
+##   A       0 0 0 0 0 5 5 5 5  0  0  0  0  0  0  0
+##   B       0 0 0 0 0 0 0 0 0  5  5  5  5  5  5  5
+## 
+## , , phase = fup
+## 
+##          id
+## treatment 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+##   control 5 5 5 5 5 0 0 0 0  0  0  0  0  0  0  0
+##   A       0 0 0 0 0 5 5 5 5  0  0  0  0  0  0  0
+##   B       0 0 0 0 0 0 0 0 0  5  5  5  5  5  5  5</code></pre>
+<p>Since the data are made up, let’s make this easier to visualize by imposing a realistic study. Let’s assume the DV is amount learned and we are testing two educational interventions (a, b) to see if they improve learning over time (phases) compared to a control (control).</p>
+<div id="anova" class="section level2">
+<h2>ANOVA</h2>
+<p>The first step is running an ANOVA analysis. Note afex provides <em>three</em> ways to call this function: <code>aov_ez</code>, <code>aov_car</code>, and <code>aov_4</code>. They all produce the same results but vary in the formula conventions used to by different R packages. For our purposes, we will focus first on the <code>aov_car</code> to understand R’s basic ANOVA syntax and then show <code>aov_ez</code> which is more human readable way to provide your code.</p>
+<p>When specifying ANOVA (and pretty much any other formula) in R, you must give an equation representing your model in the form of <code>Y ~ X1 + X2...</code> where <code>Y</code> is your DV, <code>X1</code> is your first predictor, <code>X2</code> is your second predictor, and so forth. To represent interactions between variables, you must place a <code>:</code> between them and add them into the equation like this: <code>Y ~ X1 + X2 + X1:X2</code>. A simpler way to have R automatically tally all possible interactions between variables is to separate them with an <code>*</code> like this: <code>Y ~ X1 * X2</code>. Both forms will return the same results. Once specified, you must also include a <code>data = data frame name</code> wherein you specify the name of the data frame containing your variables.</p>
+<p>Within <code>aov_car</code>, you also must add an <code>Error</code> term to the formula specifying the column containing the participant (or unit of observation) identifier (e.g., minimally <code>+ Error(id)</code>). When a within- or repeated-measures factor is included, you must divide the error term by the within-subject error as follows: <code>Error(id/repeated-measure)</code>. Turning back to our <code>obk.long</code> data, let’s look at the effects of <code>treatment</code> and <code>phase</code> on <code>value</code>.</p>
+<pre class="r"><code># Specify the anova formula and store output as object
+
+a &lt;- aov_car(value ~ treatment + Error(id/phase), data = obk.long)   # formula specification</code></pre>
+<pre><code>## Warning: More than one observation per cell, aggregating the data using
+## mean (i.e, fun_aggregate = mean)!</code></pre>
+<pre><code>## Contrasts set to contr.sum for the following variables: treatment</code></pre>
+<pre class="r"><code>a &lt;- aov_car(value ~ treatment + Error(id/phase), data = obk.long)   # Same result. The Bet * With interaction term is not necessary.</code></pre>
+<pre><code>## Warning: More than one observation per cell, aggregating the data using
+## mean (i.e, fun_aggregate = mean)!</code></pre>
+<pre><code>## Contrasts set to contr.sum for the following variables: treatment</code></pre>
+<pre class="r"><code>                                                                     # I often do for full transparency.
+a</code></pre>
+<pre><code>## Anova Table (Type 3 tests)
+## 
+## Response: value
+##            Effect          df  MSE         F ges p.value
+## 1       treatment       2, 13 6.41    2.91 + .27     .09
+## 2           phase 1.74, 22.64 0.81 19.29 *** .21  &lt;.0001
+## 3 treatment:phase 3.48, 22.64 0.81   5.43 ** .13    .004
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;+&#39; 0.1 &#39; &#39; 1
+## 
+## Sphericity correction method: GG</code></pre>
+<p>The printed output is an ANOVA table that could basically be copied into a manusript as is. One sees the terms in the column <code>Effect</code>, the degrees of freedom (<code>df</code>), the mean-squared error (<code>MSE</code> - might remove for a paper), the <strong>F</strong>-value along with a significance notation, and the <strong>p</strong>-value. The unfamiliar <code>ges</code> is a generalized eta-square, which is the recommended effect size for repeated measure designs. If you run <code>summary(a)</code> you will get further information, including Machly’s test for sphericity and GG as well as HF corrections. Note we can use the <code>afex_aov</code> objects to print nice tables with the <code>knitr</code> package.</p>
+<pre class="r"><code>knitr::kable(nice(a))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Effect</th>
+<th align="left">df</th>
+<th align="left">MSE</th>
+<th align="left">F</th>
+<th align="left">ges</th>
+<th align="left">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">treatment</td>
+<td align="left">2, 13</td>
+<td align="left">6.41</td>
+<td align="left">2.91 +</td>
+<td align="left">.27</td>
+<td align="left">.09</td>
+</tr>
+<tr class="even">
+<td align="left">phase</td>
+<td align="left">1.74, 22.64</td>
+<td align="left">0.81</td>
+<td align="left">19.29 ***</td>
+<td align="left">.21</td>
+<td align="left">&lt;.0001</td>
+</tr>
+<tr class="odd">
+<td align="left">treatment:phase</td>
+<td align="left">3.48, 22.64</td>
+<td align="left">0.81</td>
+<td align="left">5.43 **</td>
+<td align="left">.13</td>
+<td align="left">.004</td>
+</tr>
+</tbody>
+</table>
+<p>In terms of results, we have a significant effect for phase which indicates learning likely improves over time (practice effects). However, there is no main effect for treatment (p = .09). But, this is qualified by a significant treatment by phase interaction, which requires further probing.</p>
+</div>
+<div id="post-hoc-contrasts" class="section level2">
+<h2>Post-Hoc Contrasts</h2>
+</div>
+<div id="basic-plots" class="section level2">
+<h2>Basic Plots</h2>
+<p>The recent <code>afex</code> version comes with the <code>afex_plot</code> function which plots estimated marginal means, error bars, and raw data using <code>ggplot2</code> whih allows further modifications. Error bars can be based on different standard errors (e.g., model-based, within-subjects, between-subjects). You need to specify <code>x</code> factors, which determine which factor-levels or combinations of factor-levels are plotted on the x-axis. YOu can also defined <code>trace</code> factor(s) which determines which factor levels are connected by lines. Finally, there is the optional <code>panel</code> factor(s) for splitting the plot into subplots. <code>afex_plot</code> then plots the estimated marginal means obtained from <code>emmeans</code>, confidence intervals, and the raw data in the background. Note that the raw data in the background is per default drawn using an alpha blending of .5 (i.e., 50% semi-transparency). Thus, in case of several points lying directly on top of each other, this point appears noticeably darker.</p>
+<pre class="r"><code>afex_plot(a, x = &quot;phase&quot;, trace = &quot;treatment&quot;) + theme_classic()</code></pre>
+<pre><code>## Warning: Panel(s) show a mixed within-between-design.
+## Error bars do not allow comparisons across all means.
+## Suppress error bars with: error = &quot;none&quot;</code></pre>
+<p><img src="Analyses_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+</div>
+</div>
+<div id="regression" class="section level1">
+<h1>Regression</h1>
+</div>
+<div id="tables" class="section level1">
+<h1>Tables</h1>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
