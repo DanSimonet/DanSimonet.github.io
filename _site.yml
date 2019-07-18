@@ -1,0 +1,14 @@
+name: "my-website"
+output_dir: "."
+navbar:
+  title: "RSeminar"
+  left:
+    - text: "Welcome"
+      href: index.html
+    - text: "ROrientation"
+      href: ROrientation.html
+    - text: "Fundamentals"
+      href: Fundamentals.html
+    - text: "Analyses and Tidy"
+      href: Analyses and Tidy.html 
+  

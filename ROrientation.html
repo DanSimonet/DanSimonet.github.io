@@ -102,6 +102,93 @@ summary {
 </style>
 
 
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
 
 <!-- tabsets -->
 
@@ -185,6 +272,38 @@ $(document).ready(function () {
 
 
 
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">RSeminar</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Welcome</a>
+</li>
+<li>
+  <a href="ROrientation.html">ROrientation</a>
+</li>
+<li>
+  <a href="Fundamentals.html">Fundamentals</a>
+</li>
+<li>
+  <a href="Analyses and Tidy.html">Analyses and Tidy</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
 
 <div class="fluid-row" id="header">
 
@@ -792,9 +911,8 @@ die_table                                         # Display newly created die_pr
       col = &quot;skyblue&quot;)</code></pre>
 <p><img src="ROrientation_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 <p>The third tab, <strong>Packages</strong>, shows a list of all R packages installed on your hard drive and indicates if they are currently loaded. Loaded packages are checked while those which are installed but not loaded are unchecked. Finally, the <strong>Help</strong> menu provides all help documents for R functions. You can type the name of a function in the search window, or use the code to search for a function with the name. We will discuss more on packages and help functions in a few sections.</p>
-<pre class="r"><code>?hist   # How does the histogram function work?</code></pre>
-<pre><code>## starting httpd help server ... done</code></pre>
-<pre class="r"><code>?t.test # What about a t-test?</code></pre>
+<pre class="r"><code>?hist   # How does the histogram function work?
+?t.test # What about a t-test?</code></pre>
 </div>
 </div>
 </div>
@@ -820,28 +938,6 @@ die_table                                         # Display newly created die_pr
 <h3>Loading Packages</h3>
 <p>Once you’ve installed a package, it’s there for life unless you uninstall it. However, you must load the library before the package’s functionality is available. This is done with the <code>library</code> command.</p>
 <pre class="r"><code>library(afex)</code></pre>
-<pre><code>## Loading required package: lme4</code></pre>
-<pre><code>## Loading required package: Matrix</code></pre>
-<pre><code>## 
-## Attaching package: &#39;Matrix&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
-## 
-##     expand</code></pre>
-<pre><code>## ************
-## Welcome to afex. For support visit: http://afex.singmann.science/</code></pre>
-<pre><code>## - Functions for ANOVAs: aov_car(), aov_ez(), and aov_4()
-## - Methods for calculating p-values with mixed(): &#39;KR&#39;, &#39;S&#39;, &#39;LRT&#39;, and &#39;PB&#39;
-## - &#39;afex_aov&#39; and &#39;mixed&#39; objects can be passed to emmeans() for follow-up tests
-## - NEWS: library(&#39;emmeans&#39;) now needs to be called explicitly!
-## - Get and set global package options with: afex_options()
-## - Set orthogonal sum-to-zero contrasts globally: set_sum_contrasts()
-## - For example analyses see: browseVignettes(&quot;afex&quot;)
-## ************</code></pre>
-<pre><code>## 
-## Attaching package: &#39;afex&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:lme4&#39;:
-## 
-##     lmer</code></pre>
 <p>Once loaded you can now use all the <code>afex</code> commands. However, any loaded package disappears when ending an R session. So you must load all desired packages each time you start R.</p>
 <p>I suggest including a vector of package names at the top of your script and then running the following code to load everything in one go. The code below includes 5 different packages I often use, each with specialized capabilities.</p>
 <pre class="r"><code>x &lt;- c(&quot;tidyverse&quot;, &quot;MplusAutomation&quot;, &quot;texreg&quot;, &quot;tidyr&quot;, &quot;lubridate&quot;)
@@ -930,19 +1026,23 @@ library()
 <pre class="r"><code>data()
 search()</code></pre>
 <pre><code>##  [1] &quot;.GlobalEnv&quot;              &quot;package:MplusAutomation&quot;
-##  [3] &quot;package:afex&quot;            &quot;package:lme4&quot;           
-##  [5] &quot;package:Matrix&quot;          &quot;package:kableExtra&quot;     
-##  [7] &quot;package:knitr&quot;           &quot;package:lubridate&quot;      
-##  [9] &quot;package:texreg&quot;          &quot;package:MASS&quot;           
-## [11] &quot;package:forcats&quot;         &quot;package:stringr&quot;        
-## [13] &quot;package:dplyr&quot;           &quot;package:purrr&quot;          
-## [15] &quot;package:readr&quot;           &quot;package:tidyr&quot;          
-## [17] &quot;package:tibble&quot;          &quot;package:ggplot2&quot;        
-## [19] &quot;package:tidyverse&quot;       &quot;package:stats&quot;          
-## [21] &quot;package:graphics&quot;        &quot;package:grDevices&quot;      
-## [23] &quot;package:utils&quot;           &quot;package:datasets&quot;       
-## [25] &quot;package:methods&quot;         &quot;Autoloads&quot;              
-## [27] &quot;package:base&quot;</code></pre>
+##  [3] &quot;package:kableExtra&quot;      &quot;package:knitr&quot;          
+##  [5] &quot;package:lubridate&quot;       &quot;package:texreg&quot;         
+##  [7] &quot;package:car&quot;             &quot;package:carData&quot;        
+##  [9] &quot;package:multcomp&quot;        &quot;package:TH.data&quot;        
+## [11] &quot;package:MASS&quot;            &quot;package:survival&quot;       
+## [13] &quot;package:mvtnorm&quot;         &quot;package:emmeans&quot;        
+## [15] &quot;package:afex&quot;            &quot;package:lme4&quot;           
+## [17] &quot;package:Matrix&quot;          &quot;package:corrr&quot;          
+## [19] &quot;package:forcats&quot;         &quot;package:stringr&quot;        
+## [21] &quot;package:dplyr&quot;           &quot;package:purrr&quot;          
+## [23] &quot;package:readr&quot;           &quot;package:tidyr&quot;          
+## [25] &quot;package:tibble&quot;          &quot;package:ggplot2&quot;        
+## [27] &quot;package:tidyverse&quot;       &quot;package:psych&quot;          
+## [29] &quot;package:stats&quot;           &quot;package:graphics&quot;       
+## [31] &quot;package:grDevices&quot;       &quot;package:utils&quot;          
+## [33] &quot;package:datasets&quot;        &quot;package:methods&quot;        
+## [35] &quot;Autoloads&quot;               &quot;package:base&quot;</code></pre>
 <pre class="r"><code>packageDescription(&quot;dplyr&quot;)   </code></pre>
 <pre><code>## Type: Package
 ## Package: dplyr
