@@ -1,1 +1,1 @@
-# DanSimonet.github.io
+# R Seminar Workshop
